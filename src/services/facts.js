@@ -6,5 +6,6 @@ export const getRandomFact = () => {
         .then(factData => {
             const newFact = factData.fact;
             return newFact
-        })
+        }
+    )
 }

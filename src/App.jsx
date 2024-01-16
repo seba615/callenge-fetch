@@ -1,22 +1,13 @@
-import { useEffect, useState } from "react"
-import { getRandomFact } from "./services/facts";
 import { useCatImage } from "./hooks/useCatImage";
+import { useCatFact } from "./hooks/useCatFact";
 import './App.css';
 
-const CAT_ENDPOINT_RANDON_FACT_URL = `https://catfact.ninja/fact`;
-
 export function App() {
-    const [fact, setFact] = useState();
-    const {image} = useCatImage({fact});
-
-    useEffect(() => {
-        getRandomFact().then(newFact => setFact(newFact));
-    }, [])
-
-
+    const { fact, refreshRandomFact } = useCatFact();
+    const { image } = useCatImage({ fact });
 
     const handleUpdate = () => {
-        getRandomFact().then(newFact => setFact(newFact));
+        refreshRandomFact();
     }
 
     return (
